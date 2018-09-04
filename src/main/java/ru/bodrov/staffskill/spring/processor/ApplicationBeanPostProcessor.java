@@ -16,6 +16,7 @@ public class ApplicationBeanPostProcessor implements BeanPostProcessor {
 
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException{
         System.out.println("After Initialization" + beanName);
+        System.out.println("end");
         return bean;
     }
 }

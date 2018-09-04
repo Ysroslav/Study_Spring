@@ -21,7 +21,6 @@ public class ApplicationBeanFactoryPostProcessor implements BeanFactoryPostProce
         }
         System.out.println();
         System.out.println("end");
-        System.out.println("test pull Request");
     }
 
 }
