@@ -20,6 +20,7 @@ public class ApplicationBeanFactoryPostProcessor implements BeanFactoryPostProce
             System.out.println(name + " : " + className);
         }
         System.out.println();
+        System.out.println("end");
     }
 
 }
