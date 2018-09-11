@@ -1,34 +1,90 @@
 package ru.bodrov.staffskill.spring.sqlservice;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import ru.bodrov.staffskill.spring.model.DepartmentEnt;
-import ru.bodrov.staffskill.spring.model.TestStaffEnt;
 import ru.bodrov.staffskill.spring.repository.DepartmentRepository;
-import ru.bodrov.staffskill.spring.repository.TestRepository;
-import javax.transaction.Transactional;
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
-@Transactional
 @Service
+@Transactional
 public class DepartmentService {
 
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    public @NotNull DepartmentEnt findOne(String id){return departmentRepository.findOne(id);}
+    @Transactional(readOnly = true)
+    public DepartmentEnt findByDepartmentName(String departmentName) {
+        return departmentRepository.findByDepartmentName(departmentName);
+    }
 
-    public @Nullable DepartmentEnt getById(String id){return departmentRepository.getById(id);}
+    @Transactional(readOnly = true)
+    public Iterable<DepartmentEnt> findAll(Sort sort) {
+        return departmentRepository.findAll(sort);
+    }
 
-    public @NotNull List<DepartmentEnt> findAll(){return departmentRepository.findAll();}
+    @Transactional(readOnly = true)
+    public Page<DepartmentEnt> findAll(Pageable pageable) {
+        return departmentRepository.findAll(pageable);
+    }
 
-    public @NotNull DepartmentEnt removeById(String id){return departmentRepository.removeById(id);}
+    @Transactional
+    public <S extends DepartmentEnt> S save(S s) {
+        return departmentRepository.save(s);
+    }
 
-    public void persist(DepartmentEnt entity){departmentRepository.persist(entity);}
+    @Transactional
+    public <S extends DepartmentEnt> Iterable<S> saveAll(Iterable<S> iterable) {
+        return departmentRepository.saveAll(iterable);
+    }
 
-    public DepartmentEnt merge(DepartmentEnt entity){return departmentRepository.merge(entity);}
+    @Transactional(readOnly = true)
+    public Optional<DepartmentEnt> findById(String s) {
+        return departmentRepository.findById(s);
+    }
 
-    public void removeAll(){departmentRepository.removeAll();}
+    @Transactional(readOnly = true)
+    public boolean existsById(String s) {
+        return departmentRepository.existsById(s);
+    }
+
+    @Transactional(readOnly = true)
+    public Iterable<DepartmentEnt> findAll() {
+        return departmentRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Iterable<DepartmentEnt> findAllById(Iterable<String> iterable) {
+        return departmentRepository.findAllById(iterable);
+    }
+
+    @Transactional(readOnly = true)
+    public long count() {
+        return departmentRepository.count();
+    }
+
+    @Transactional
+    public void deleteById(String s) {
+        departmentRepository.deleteById(s);
+    }
+
+    @Transactional
+    public void delete(DepartmentEnt departmentEnt) {
+        departmentRepository.delete(departmentEnt);
+    }
+
+    @Transactional
+    public void deleteAll(Iterable<? extends DepartmentEnt> iterable) {
+        departmentRepository.deleteAll(iterable);
+    }
+
+    @Transactional
+    public void deleteAll() {
+        departmentRepository.deleteAll();
+    }
 }

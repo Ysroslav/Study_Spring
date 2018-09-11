@@ -1,39 +1,28 @@
 package ru.bodrov.staffskill.spring.repository;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
+import ru.bodrov.staffskill.spring.model.QuestionEnt;
 import ru.bodrov.staffskill.spring.model.ResultEnt;
-import java.util.List;
+import ru.bodrov.staffskill.spring.model.StaffEnt;
 
-public class ResultRepository extends AbstractRepository<ResultEnt> {
-
+@Repository(ResultRepository.NAME)
+public interface ResultRepository extends PagingAndSortingRepository<ResultEnt, String> {
     @NotNull
-    public static final String NAME = "resultRepository";
+    String NAME = "resultRepository";
 
-    @NotNull
-    public ResultEnt findOne(final String id){return entityManager.find(ResultEnt.class,id);}
+    ResultEnt findByStaff(StaffEnt staffEnt);
 
-    @Nullable
-    public ResultEnt getById(final String id){
-        if(id==null || id.isEmpty()) return null;
-        return getEntity(entityManager.createQuery("SELECT e FROM ResultEnt WHERE e.id = :id", ResultEnt.class)
-                .setParameter("id", id)
-                .setMaxResults(1));
-    }
+    long countByStaff(StaffEnt staffEnt);
 
-    @NotNull
-    public List<ResultEnt> findAll(){
-        return entityManager.createQuery("SELECT e FROM ResultEnt", ResultEnt.class).getResultList();
-    }
+    @Query(value = "SELECT min(ballResult) FROM ResultEnt")
+    int minByBallResult();
 
-    @NotNull
-    public ResultEnt removeById(final String id){
-        final ResultEnt result = findOne(id);
-        entityManager.remove(result);
-        return result;
-    }
+    @Query(value = "SELECT max(ballResult) FROM ResultEnt")
+    int maxByBallResult();
 
-    public void removeAll(){
-        entityManager.createQuery("DELETE FROM ResultEnt");
-    }
+    @Query(value = "SELECT sum(ballResult) FROM ResultEnt")
+    int sumByBallResult();
 }

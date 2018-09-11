@@ -1,35 +1,114 @@
 package ru.bodrov.staffskill.spring.sqlservice;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
-import ru.bodrov.staffskill.spring.model.QuestionEnt;
 import ru.bodrov.staffskill.spring.model.ResultEnt;
-import ru.bodrov.staffskill.spring.repository.QuestionRepository;
+import ru.bodrov.staffskill.spring.model.StaffEnt;
 import ru.bodrov.staffskill.spring.repository.ResultRepository;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
-import javax.transaction.Transactional;
-import java.util.List;
-
-@Transactional
 @Service
+@Transactional
 public class ResultService {
 
     @Autowired
     private ResultRepository resultRepository;
 
-    public @NotNull ResultEnt findOne(String id){return resultRepository.findOne(id);}
+    @Transactional(readOnly = true)
+    public ResultEnt findByStaff(StaffEnt staffEnt) {
+        return resultRepository.findByStaff(staffEnt);
+    }
 
-    public @Nullable ResultEnt getById(String id){return resultRepository.getById(id);}
+    @Transactional(readOnly = true)
+    public long countByStaff(StaffEnt staffEnt) {
+        return resultRepository.countByStaff(staffEnt);
+    }
 
-    public @NotNull List<ResultEnt> findAll(){return resultRepository.findAll();}
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT min(ballResult) FROM ResultEnt")
+    public int minByBallResult() {
+        return resultRepository.minByBallResult();
+    }
 
-    public @NotNull ResultEnt removeById(String id){return resultRepository.removeById(id);}
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT max(ballResult) FROM ResultEnt")
+    public int maxByBallResult() {
+        return resultRepository.maxByBallResult();
+    }
 
-    public void persist(ResultEnt entity){resultRepository.persist(entity);}
+    @Transactional(readOnly = true)
+    @Query(value = "SELECT sum(ballResult) FROM ResultEnt")
+    public int sumByBallResult() {
+        return resultRepository.sumByBallResult();
+    }
 
-    public ResultEnt merge(ResultEnt entity){return resultRepository.merge(entity);}
+    @Transactional(readOnly = true)
+    public Iterable<ResultEnt> findAll(Sort sort) {
+        return resultRepository.findAll(sort);
+    }
 
-    public void removeAll(){resultRepository.removeAll();}
+    @Transactional(readOnly = true)
+    public Page<ResultEnt> findAll(Pageable pageable) {
+        return resultRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public <S extends ResultEnt> S save(S s) {
+        return resultRepository.save(s);
+    }
+
+    @Transactional
+    public <S extends ResultEnt> Iterable<S> saveAll(Iterable<S> iterable) {
+        return resultRepository.saveAll(iterable);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<ResultEnt> findById(String s) {
+        return resultRepository.findById(s);
+    }
+
+    @Transactional(readOnly = true)
+    public boolean existsById(String s) {
+        return resultRepository.existsById(s);
+    }
+
+    @Transactional(readOnly = true)
+    public Iterable<ResultEnt> findAll() {
+        return resultRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Iterable<ResultEnt> findAllById(Iterable<String> iterable) {
+        return resultRepository.findAllById(iterable);
+    }
+
+    @Transactional(readOnly = true)
+    public long count() {
+        return resultRepository.count();
+    }
+
+    @Transactional
+    public void deleteById(String s) {
+        resultRepository.deleteById(s);
+    }
+
+    @Transactional
+    public void delete(ResultEnt resultEnt) {
+        resultRepository.delete(resultEnt);
+    }
+
+    @Transactional
+    public void deleteAll(Iterable<? extends ResultEnt> iterable) {
+        resultRepository.deleteAll(iterable);
+    }
+
+    @Transactional
+    public void deleteAll() {
+        resultRepository.deleteAll();
+    }
 }

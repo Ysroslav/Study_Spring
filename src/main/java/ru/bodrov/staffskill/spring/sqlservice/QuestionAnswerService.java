@@ -1,35 +1,84 @@
 package ru.bodrov.staffskill.spring.sqlservice;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ru.bodrov.staffskill.spring.model.AnswerEnt;
 import ru.bodrov.staffskill.spring.model.QuestionAnswerEnt;
-import ru.bodrov.staffskill.spring.repository.AnswerRepository;
 import ru.bodrov.staffskill.spring.repository.QuestionAnswerRepository;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
-import javax.transaction.Transactional;
-import java.util.List;
-
-@Transactional
 @Service
+@Transactional
 public class QuestionAnswerService {
 
     @Autowired
     private QuestionAnswerRepository questionAnswerRepository;
 
-    public @NotNull QuestionAnswerEnt findOne(String id){return questionAnswerRepository.findOne(id);}
+    @Transactional(readOnly = true)
+    public Iterable<QuestionAnswerEnt> findAll(Sort sort) {
+        return questionAnswerRepository.findAll(sort);
+    }
 
-    public @Nullable QuestionAnswerEnt getById(String id){return questionAnswerRepository.getById(id);}
+    @Transactional(readOnly = true)
+    public Page<QuestionAnswerEnt> findAll(Pageable pageable) {
+        return questionAnswerRepository.findAll(pageable);
+    }
 
-    public @NotNull List<QuestionAnswerEnt> findAll(){return questionAnswerRepository.findAll();}
+    @Transactional
+    public <S extends QuestionAnswerEnt> S save(S s) {
+        return questionAnswerRepository.save(s);
+    }
 
-    public @NotNull QuestionAnswerEnt removeById(String id){return questionAnswerRepository.removeById(id);}
+    @Transactional
+    public <S extends QuestionAnswerEnt> Iterable<S> saveAll(Iterable<S> iterable) {
+        return questionAnswerRepository.saveAll(iterable);
+    }
 
-    public void persist(QuestionAnswerEnt entity){questionAnswerRepository.persist(entity);}
+    @Transactional(readOnly = true)
+    public Optional<QuestionAnswerEnt> findById(String s) {
+        return questionAnswerRepository.findById(s);
+    }
 
-    public QuestionAnswerEnt merge(QuestionAnswerEnt entity){return questionAnswerRepository.merge(entity);}
+    @Transactional(readOnly = true)
+    public boolean existsById(String s) {
+        return questionAnswerRepository.existsById(s);
+    }
 
-    public void removeAll(){questionAnswerRepository.removeAll();}
+    @Transactional(readOnly = true)
+    public Iterable<QuestionAnswerEnt> findAll() {
+        return questionAnswerRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Iterable<QuestionAnswerEnt> findAllById(Iterable<String> iterable) {
+        return questionAnswerRepository.findAllById(iterable);
+    }
+
+    @Transactional(readOnly = true)
+    public long count() {
+        return questionAnswerRepository.count();
+    }
+
+    @Transactional
+    public void deleteById(String s) {
+        questionAnswerRepository.deleteById(s);
+    }
+
+    @Transactional
+    public void delete(QuestionAnswerEnt questionAnswerEnt) {
+        questionAnswerRepository.delete(questionAnswerEnt);
+    }
+
+    @Transactional
+    public void deleteAll(Iterable<? extends QuestionAnswerEnt> iterable) {
+        questionAnswerRepository.deleteAll(iterable);
+    }
+
+    @Transactional
+    public void deleteAll() {
+        questionAnswerRepository.deleteAll();
+    }
 }
