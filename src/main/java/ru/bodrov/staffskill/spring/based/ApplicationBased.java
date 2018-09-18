@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.bodrov.staffskill.spring.entity.TestService;
 
-@Configuration
+//@Configuration
 public class ApplicationBased {
 
     @Bean(name = TestBased.NAME)

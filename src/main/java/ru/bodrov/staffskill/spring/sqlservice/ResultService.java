@@ -8,8 +8,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import ru.bodrov.staffskill.spring.model.ResultEnt;
 import ru.bodrov.staffskill.spring.model.StaffEnt;
+import ru.bodrov.staffskill.spring.model.TestStaffEnt;
 import ru.bodrov.staffskill.spring.repository.ResultRepository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Date;
 import java.util.Optional;
 
 @Service
@@ -110,5 +113,35 @@ public class ResultService {
     @Transactional
     public void deleteAll() {
         resultRepository.deleteAll();
+    }
+
+    @Transactional(readOnly = true)
+    public int countByTest(TestStaffEnt test) {
+        return resultRepository.countByTest(test);
+    }
+
+    @Query(value = "SELECT count(id) FROM ResultEnt WHERE ballResult>=:minBall and test =:test")
+    public int countByTestSuccess(int minValueBall, TestStaffEnt test) {
+        return resultRepository.countByTestSuccess(minValueBall, test);
+    }
+
+    @Query(value = "SELECT avg(ballResult) FROM ResultEnt WHERE test =:test")
+    public int avgBallByTest(TestStaffEnt test) {
+        return resultRepository.avgBallByTest(test);
+    }
+
+    @Query(value = "SELECT max(ballResult) FROM ResultEnt WHERE test =:test")
+    public int maxBallByTest(TestStaffEnt test) {
+        return resultRepository.maxBallByTest(test);
+    }
+
+    @Query(value = "SELECT min(ballResult) FROM ResultEnt WHERE test =:test")
+    public int minBallByTest(TestStaffEnt test) {
+        return resultRepository.minBallByTest(test);
+    }
+
+    @Query(value = "SELECT max(dateTest) FROM ResultEnt WHERE test =:test")
+    public Date maxDateByTest(TestStaffEnt test) {
+        return resultRepository.maxDateByTest(test);
     }
 }

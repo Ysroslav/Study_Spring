@@ -6,12 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<table width="100%" cellspacing="10" cellpadding="10" border="1" style="...">
+<table width="100%" cellpadding="10" cellspacing="10" bgcolor="black">
     <tr>
         <td>
-            <a href = "/" style = "...">MAIN</a>&nbsp;|&nbsp;
-            <a href = "/staff-list" style = "...">STAFF</a>&nbsp;|&nbsp;
-            <a href = "/department-list" style = "...">DEPARTMENT</a>&nbsp;|&nbsp;
+            <a class="active-menu" href = "index">MAIN</a>&nbsp;|&nbsp;
+            <a href = "dicttest-list">TEST</a>&nbsp;|&nbsp;
+            <a href = "#">STAFF</a>&nbsp;|&nbsp;
+            <a href = "#">DEPARTMENT</a>&nbsp;|&nbsp;
         </td>
     </tr>
 </table>

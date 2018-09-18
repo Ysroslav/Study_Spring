@@ -15,7 +15,8 @@
             padding: 0;
         }
         a{
-            color:black;
+            color:white;
+            text-decoration: none;
         }
         button{
             font-size: 1.1em;

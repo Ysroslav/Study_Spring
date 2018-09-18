@@ -82,4 +82,9 @@ public class DictTestService {
     public void deleteAll() {
         dictTestRepository.deleteAll();
     }
+
+    @Transactional(readOnly = true)
+    public DictTestEnt findByNameType(String nameType) {
+        return dictTestRepository.findByNameType(nameType);
+    }
 }

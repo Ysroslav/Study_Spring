@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.print.DocFlavor;
 import java.util.Date;
 
-@Component(TestStaff.NAME)
+//@Component(TestStaff.NAME)
 public class TestStaff {
 
     public static final String NAME = "New_Test";

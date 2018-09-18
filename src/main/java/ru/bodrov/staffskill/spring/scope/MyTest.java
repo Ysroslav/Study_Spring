@@ -8,8 +8,8 @@ import ru.bodrov.staffskill.spring.entity.TestService;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 
-@Component
-@Scope(BeanDefinition.SCOPE_SINGLETON)
+//@Component
+//@Scope(BeanDefinition.SCOPE_SINGLETON)
 public class MyTest {
 
     public static final String NAME = "Test_S";

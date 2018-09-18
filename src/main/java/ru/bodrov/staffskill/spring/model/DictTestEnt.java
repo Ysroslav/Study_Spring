@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Table(name = "dict_test")
 public class DictTestEnt extends AbstractEntity {
 
-    @Column(name = "type_name", unique = true, nullable = false)
+    @Column(name = "type_name", unique = false, nullable = false)
     private String nameType;
 
     public String getNameType(){

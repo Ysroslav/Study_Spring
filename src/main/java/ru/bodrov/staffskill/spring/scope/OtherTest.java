@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.bodrov.staffskill.spring.entity.TestService;
 
-@Component
-@Scope(BeanDefinition.SCOPE_PROTOTYPE)
+//@Component
+//@Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class OtherTest {
 
     public static final String NAME = "Test_P";

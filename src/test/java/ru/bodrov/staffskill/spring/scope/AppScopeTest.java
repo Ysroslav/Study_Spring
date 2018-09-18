@@ -8,10 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 
 import static org.junit.Assert.assertEquals;
 
-@ComponentScan("ru.bodrov.staffskill.spring.scope")
+//@ComponentScan("ru.bodrov.staffskill.spring.scope")
 public class AppScopeTest {
 
-    @Test
+    /*@Test
     public void testScopeSingleton(){
         final ApplicationContext context = new AnnotationConfigApplicationContext(AppScopeTest.class);
         assertEquals(context.getBean(MyTest.class), context.getBean(MyTest.class));
@@ -21,5 +21,5 @@ public class AppScopeTest {
     public void testPrototype(){
         final ApplicationContext context = new AnnotationConfigApplicationContext(AppScopeTest.class);
         assertEquals(context.getBean(OtherTest.class), context.getBean(OtherTest.class));
-    }
+    }*/
 }
