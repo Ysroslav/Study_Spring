@@ -36,38 +36,4 @@ public class TestStaffController {
         }
         return "redirect: profile/index";
     }
-
-    /*@GetMapping("/profile/poll-create")
-    public String createNewPoll(){
-        final TestStaffEnt poll = new TestStaffEnt();
-        poll.setTestName("New Test");
-        testStaffService.save(poll);
-        return "redirect:/profile/poll-list";
-    }
-
-    @GetMapping("/profile/poll-edit/{id}")
-    public String editPoll(final Model model, @PathVariable("id") final String id){
-        final Optional<TestStaffEnt> poll = testStaffService.findById(id);
-        poll.ifPresent(p->model.addAttribute("poll", p));
-        return "/profile/poll-edit";
-    }
-
-    @GetMapping("/profile/poll-save")
-    public String saveNewPoll(@ModelAttribute("poll") final TestStaffEnt poll, final BindingResult result){
-        if(!result.hasErrors()) testStaffService.save(poll);
-        return "redirect:/profile/poll-list";
-    }
-
-    @GetMapping("/profile/staff-view/{id}")
-    public String getViewPoll(final Model model, @PathVariable("id") final String id) {
-        final Optional<TestStaffEnt> poll = testStaffService.findById(id);
-        poll.ifPresent(p -> model.addAttribute("poll", p));
-        return "/profile/poll-view";
-    }
-
-    @GetMapping("/profile/poll-delete/{id}")
-    public String deletePoll(@PathVariable("id") final String id){
-        testStaffService.deleteById(id);
-        return "redirect:/profile/poll-list";
-    }*/
 }
