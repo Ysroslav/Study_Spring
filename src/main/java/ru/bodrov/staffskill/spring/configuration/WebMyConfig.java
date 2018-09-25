@@ -7,29 +7,28 @@ import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.stereotype.Component;
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import javax.interceptor.Interceptor;
+
+@Configuration
 @EnableWebMvc
-@ComponentScan("ru.bodrov.staffskill.spring")
+@ComponentScan(basePackages = {"ru.bodrov.staffskill.spring.sqlservice", "ru.bodrov.staffskill.spring.controller", "ru.bodrov.staffskill.spring.bootstrap"})
+//@ComponentScan(basePackages = "ru.bodrov.staffskill.spring.controller")
 @EnableJpaRepositories("ru.bodrov.staffskill.spring.repository")
 public class WebMyConfig implements WebMvcConfigurer {
 
-    @Bean
-    public InternalResourceViewResolver resolver(){
-        final InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setViewClass(JstlView.class);
-        resolver.setPrefix("/WEB-INF/views/");
-        resolver.setSuffix(".jsp");
-        return resolver;
-    }
+   @Override
+    public void configureViewResolvers(ViewResolverRegistry registry){
+       registry.jsp().prefix("/WEB-INF/views/").suffix(".jsp");
+   }
 
-    @Bean
-    public MessageSource messageSource(){
-        final ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-        source.setBasename("messages");
-        return source;
-    }
+   @Override
+    public void addViewControllers(ViewControllerRegistry registry){
+       registry.addViewController("/login").setViewName("login");
+   }
 }
