@@ -7,7 +7,7 @@ import ru.bodrov.staffskill.spring.model.DictTestEnt;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+//@XmlRootElement
 public class DictTestDTO {
 
     @Nullable

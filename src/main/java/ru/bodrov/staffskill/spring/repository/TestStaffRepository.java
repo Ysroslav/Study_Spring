@@ -3,7 +3,9 @@ package ru.bodrov.staffskill.spring.repository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import ru.bodrov.staffskill.spring.model.DictTestEnt;
 import ru.bodrov.staffskill.spring.model.StaffEnt;
 import ru.bodrov.staffskill.spring.model.TestStaffEnt;
 
@@ -12,9 +14,5 @@ public interface TestStaffRepository extends PagingAndSortingRepository<TestStaf
     @NotNull
     String NAME = "testStaffRepository";
 
-    @Query(value = "SELECT min(minValueBall) FROM TestStaffEnt")
-    int minValueBall();
-
-    @Query(value = "SELECT max(minValueBall) FROM TestStaffEnt")
-    int maxValueBall();
+    Iterable<TestStaffEnt> findByType(@Param("type") DictTestEnt type);
 }

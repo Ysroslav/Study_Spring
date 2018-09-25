@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import ru.bodrov.staffskill.spring.model.DictTestEnt;
 import ru.bodrov.staffskill.spring.model.StaffEnt;
 import ru.bodrov.staffskill.spring.model.TestStaffEnt;
 import ru.bodrov.staffskill.spring.repository.TestStaffRepository;
@@ -19,17 +20,6 @@ public class TestStaffService {
     @Autowired
     private TestStaffRepository testStaffRepository;
 
-    @Transactional(readOnly = true)
-    @Query(value = "SELECT min(minValueBall) FROM TestStaffEnt")
-    public int minValueBall() {
-        return testStaffRepository.minValueBall();
-    }
-
-    @Transactional(readOnly = true)
-    @Query(value = "SELECT max(minValueBall) FROM TestStaffEnt")
-    public int maxValueBall() {
-        return testStaffRepository.maxValueBall();
-    }
 
     @Transactional(readOnly = true)
     public Iterable<TestStaffEnt> findAll(Sort sort) {
@@ -94,5 +84,10 @@ public class TestStaffService {
     @Transactional
     public void deleteAll() {
         testStaffRepository.deleteAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Iterable<TestStaffEnt> findByType(DictTestEnt type) {
+        return testStaffRepository.findByType(type);
     }
 }

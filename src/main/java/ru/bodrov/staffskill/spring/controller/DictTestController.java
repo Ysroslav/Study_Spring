@@ -16,44 +16,44 @@ public class DictTestController {
     @Autowired
     private DictTestService dictTestService;
 
-    @GetMapping("dicttest-list")
+    @GetMapping("profile/dicttest-list")
     public String dictTestList(final Model model){
         final Iterable<DictTestEnt> dictTestEnts = dictTestService.findAll();
         model.addAttribute("dictTestEnts", dictTestEnts);
-        return "dicttest-list";
+        return "/profile/dicttest-list";
     }
 
-    @GetMapping("dicttest-create")
+    @GetMapping("profile/dicttest-create")
     public String dictTestCreate(){
         final DictTestEnt dictTestEnt = new DictTestEnt();
         dictTestEnt.setNameType("New Test1");
         dictTestService.save(dictTestEnt);
-        return "redirect:/dicttest-list";
+        return "redirect:/profile/dicttest-list";
     }
 
-    @GetMapping("dicttest-edit/{id}")
+    @GetMapping("profile/dicttest-edit/{id}")
     public String dictTestEdit(final Model model, @PathVariable("id") final String id){
         final Optional<DictTestEnt> dictTestEnt = dictTestService.findById(id);
         dictTestEnt.ifPresent(p->model.addAttribute("dictTestEnt", p));
-        return "dicttest-edit";
+        return "/profile/dicttest-edit";
     }
 
-    @GetMapping("dicttest-save")
+    @GetMapping("profile/dicttest-save")
     public String dictTestSave(@ModelAttribute("dictTestEnt") final DictTestEnt dictTestEnt, final BindingResult result){
         if(!result.hasErrors()) dictTestService.save(dictTestEnt);
-        return "redirect:/dicttest-list";
+        return "redirect:/profile/dicttest-list";
     }
 
-    @GetMapping("dicttest-view/{id}")
+    @GetMapping("profile/dicttest-view/{id}")
     public String dictTestView(final Model model, @PathVariable("id") final String id) {
         final Optional<DictTestEnt> dictTestEnt = dictTestService.findById(id);
         dictTestEnt.ifPresent(p -> model.addAttribute("dictTestEnt", p));
-        return "dicttest-view";
+        return "/profile/dicttest-view";
     }
 
-    @GetMapping("dicttest-delete/{id}")
+    @GetMapping("profile/dicttest-delete/{id}")
     public String dictTestDelete(@PathVariable("id") final String id){
         dictTestService.deleteById(id);
-        return "redirect:/dicttest-list";
+        return "redirect:/profile/dicttest-list";
     }
 }

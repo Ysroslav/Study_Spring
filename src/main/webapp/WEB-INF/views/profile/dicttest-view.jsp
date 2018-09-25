@@ -1,18 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Yaroslav
-  Date: 15.09.2018
-  Time: 14:52
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>VIEW</title>
 </head>
 <body>
-<jsp:include page="prefix.jsp">
+<jsp:include page="../helper/prefix.jsp">
     <jsp:param name="title" value="TESTS"/>
 </jsp:include>
 
@@ -39,7 +32,7 @@
     <table width = 100% cellspacing="0" cellpadding="0" border="0">
         <tr>
             <td nowrap="nowrap">
-                <form action="/dicttest-list">
+                <form action="/profile/dicttest-list">
                     <button type="submit" class="green">TESTS</button>
                 </form>
             </td>

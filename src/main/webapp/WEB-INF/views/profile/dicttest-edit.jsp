@@ -8,15 +8,16 @@
 </head>
 <body>
 
-<jsp:include page="prefix.jsp">
+<jsp:include page="../helper/prefix.jsp">
     <jsp:param name="title" value="TESTS"/>
 </jsp:include>
 
-<h1>СПРАВОЧНИК ТЕСТОВ</h1>
+<h1>GROUP</h1>
 
-<form:form method="POST" action="/dicttest-save" modelAttribute="dictTestEnt">
+<form:form method="POST" action="/profile/dicttest-save" modelAttribute="dictTestEnt">
     <p>
         <div style="...">NAME TYPE</div>
+        <form:input path="nameType" />
     </p>
     <p>
         <button type = "submit">SAVE</button>

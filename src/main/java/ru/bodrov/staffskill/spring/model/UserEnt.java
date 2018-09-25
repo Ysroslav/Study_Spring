@@ -1,8 +1,8 @@
 package ru.bodrov.staffskill.spring.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tbl_user")
@@ -19,6 +19,16 @@ public class UserEnt extends AbstractEntity {
 
     @Column
     private Boolean disabled;
+
+    @OneToMany(mappedBy = "userEnt", cascade = CascadeType.ALL)
+    private List<RoleEnt> roleEnts = new ArrayList<>();
+
+    public UserEnt(String login, String email){
+        this.login = login;
+        this.email = email;
+    }
+
+    public UserEnt(){}
 
     public String getLogin() {
         return login;
@@ -50,5 +60,13 @@ public class UserEnt extends AbstractEntity {
 
     public void setDisabled(Boolean disabled) {
         this.disabled = disabled;
+    }
+
+    public List<RoleEnt> getRoleEnts() {
+        return roleEnts;
+    }
+
+    public void setRoleEnts(List<RoleEnt> roleEnts) {
+        this.roleEnts = roleEnts;
     }
 }

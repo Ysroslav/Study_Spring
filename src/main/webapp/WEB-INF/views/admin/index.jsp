@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Admin Panel</title>
-    <jsp:include page="prefix.jsp"/>
+    <jsp:include page="../helper/prefix.jsp"/>
 </head>
 <body>
 

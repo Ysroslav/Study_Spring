@@ -14,8 +14,8 @@ import java.io.IOException;
 
 public abstract class AbstractSpringServlet extends HttpServlet {
 
-    /*@Override
-    public void init(final ServletConfig config) throws ServletException{
+   /* @Override
+    public void init(final ServletConfig config) throws ServletException {
         super.init(config);
         final WebApplicationContext springContext = WebApplicationContextUtils.getRequiredWebApplicationContext(config.getServletContext());
         final AutowireCapableBeanFactory beanFactory = springContext.getAutowireCapableBeanFactory();

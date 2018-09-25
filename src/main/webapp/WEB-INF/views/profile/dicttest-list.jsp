@@ -1,15 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Yaroslav
-  Date: 13.09.2018
-  Time: 23:21
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <body>
-<jsp:include page="prefix.jsp">
+<jsp:include page="../helper/prefix.jsp">
     <jsp:param name="title" value="TESTS"/>
 </jsp:include>
     <h1>СПРАВОЧНИК ТЕСТОВ</h1>
@@ -31,20 +24,21 @@
         <tr>
             <td align="center" nowrap="nowrap">${status.index+1}</td>
             <td align="left" nowrap="nowrap">${dictTest.id}</td>
-            <td align="center" nowrap="nowrap">${dictTest.nameType}</td>
             <td align="center" nowrap="nowrap">
-                    <a href = "/dicttest-view/${dictTest.id}">VIEW</a></td>
+                <a href = "/profile/poll-list/${dictTest.id}">${dictTest.nameType}</a></td>
             <td align="center" nowrap="nowrap">
-                <a href = "/dicttest-edit/${dictTest.id}">EDIT</a></td>
+                    <a href = "/profile/dicttest-view/${dictTest.id}">VIEW</a></td>
             <td align="center" nowrap="nowrap">
-                <a href = "/dicttest-delete/${dictTest.id}">REMOVE</a></td>
+                <a href = "/profile/dicttest-edit/${dictTest.id}">EDIT</a></td>
+            <td align="center" nowrap="nowrap">
+                <a href = "/profile/dicttest-delete/${dictTest.id}">REMOVE</a></td>
         </tr>
     </c:forEach>
 </table>
 <table width = 100% cellspacing="0" cellpadding="0" border="0">
     <tr>
         <td nowrap="nowrap">
-            <form action="/dicttest-create">
+            <form action="/profile/dicttest-create">
                 <button type="submit" class="green">CREATE A NEW TEST</button>
             </form>
         </td>

@@ -23,7 +23,7 @@ public class MainAdminController {
     @Autowired
     private ResultService resultService;
 
-    @GetMapping("index")
+    @GetMapping("/admin/index")
     public String getStatisticTests(final Model model){
         final Iterable<TestStaffEnt> testsStaff = testStaffService.findAll();
         List<StatisticalTest> list = new ArrayList<>();
@@ -38,6 +38,6 @@ public class MainAdminController {
             list.add(statisticalTest);
         }
         model.addAttribute("statisticalTests", list);
-        return "index";
+        return "/admin/index";
     }
 }

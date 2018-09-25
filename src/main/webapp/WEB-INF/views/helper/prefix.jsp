@@ -51,7 +51,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="main-menu.jsp" />
+<jsp:include page="../main-menu.jsp" />
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
     <tr>
         <td width="20" nowrap="nowrap">&nbsp;</td>

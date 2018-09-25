@@ -8,11 +8,11 @@ import ru.bodrov.staffskill.spring.dto.DictTestDTO;
 import ru.bodrov.staffskill.spring.model.DictTestEnt;
 import ru.bodrov.staffskill.spring.sqlservice.DictTestService;
 
-@RestController
-@RequestMapping("DictTestService")
+//@RestController
+//@RequestMapping("DictTestService")
 public class DictTestREST {
 
-    @Autowired
+    /*@Autowired
     private DictTestService dictTestService;
 
     @GetMapping(value="pingJSON", produces = "application/json")
@@ -25,5 +25,5 @@ public class DictTestREST {
     public DictTestDTO pingXML(){
         final DictTestEnt dictTestEnt = dictTestService.findByNameType("New test");
         return new DictTestDTO(dictTestEnt);
-    }
+    }*/
 }
